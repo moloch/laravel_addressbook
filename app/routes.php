@@ -58,3 +58,21 @@ Route::get('edit/{id}', array('as' => 'edit', function($id){
 	$contact = Contact::find($id);
 	return View::make('edit')->with('contact',$contact);
 }));
+
+Route::post('edit', array('as' => 'edit', function(){
+	$rules = array(
+		'first_name' => 'Required',
+		'last_name' => 'Required',
+		'phone_number' => 'Required|regex:/^\\+[0-9]+\\ [0-9]+\\ [0-9]{6,}$/'
+		);
+	$validator = Validator::make(Input::all(), $rules);
+	if($validator->fails()){
+		return Redirect::to('edit/'.(string)Input::get('id'));
+	}
+	$contact = Contact::find(Input::get('id'));
+	$contact->first_name = Input::get('first_name');
+	$contact->last_name = Input::get('last_name');
+	$contact->phone_number = Input::get('phone_number');
+	$contact->save();
+	return Redirect::to('/');
+}));
