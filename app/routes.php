@@ -13,10 +13,30 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	$contacts = Contact::all();
+	return View::make('contacts')->with('contacts', $contacts);
 });
 
-Route::get('users', function()
+Route::get('users', array('as' => 'users', function()
 {
     return 'Users!';
-});
+}));
+
+Route::get('contacts', array('as' => 'contacts', function()
+{
+    $contacts = Contact::all();
+
+    return View::make('contacts')->with('contacts', $contacts);
+}));
+
+
+Route::get('add', array('as' => 'add', function()
+{
+    return View::make('add');
+}));
+
+Route::post('add', array('as' => 'add', function()
+{
+
+    return Redirect::to('/');
+}));
