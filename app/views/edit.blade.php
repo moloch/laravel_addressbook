@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-   {{ Form::open(array('route' => 'edit')) }}
+   {{ Form::model($contact, array('route' => 'edit', $contact->id)) }}
     <p>
     	{{ Form::label('first_name', 'First name:') }}
     	{{ Form::text('first_name') }}
