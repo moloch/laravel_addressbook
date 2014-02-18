@@ -76,3 +76,11 @@ Route::post('edit', array('as' => 'edit', function(){
 	$contact->save();
 	return Redirect::to('/');
 }));
+
+Route::get('get_contacts', array('as' => 'get_contacts', function(){
+	$search_txt = Input::get('search_txt');
+	$contacts = Contact::where('first_name',    'LIKE', '%'.$search_txt.'%')->orwhere
+							  ('last_name',     'LIKE', '%'.$search_txt.'%')->orwhere
+							  ('phone_number',  'LIKE', '%'.$search_txt.'%')->get();
+	return Response::json($contacts);
+}));

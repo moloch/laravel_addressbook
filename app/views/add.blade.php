@@ -14,6 +14,6 @@
     	{{ Form::label('phone_number', 'Phone number:') }}
     	{{ Form::text('phone_number') }}
     </p>
-    {{ Form::submit('Click Me!') }}
+    {{ Form::submit('Submit') }}
     {{ Form::close() }}  
 @stop

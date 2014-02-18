@@ -17,6 +17,6 @@
     	{{ Form::text('phone_number') }}
       </li>
     </ul>
-    {{ Form::submit('Click Me!') }}
+    {{ Form::submit('Submit') }}
     {{ Form::close() }}  
 @stop
